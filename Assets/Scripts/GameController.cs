@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
 	private int redScore = 0;
 	private int greenScore = 0;
 	public GUIText RedScore, GreenScore;
+	public GameObject ball;
 
 	// Use this for initialization
 	void Start () {
@@ -20,10 +21,16 @@ public class GameController : MonoBehaviour {
 	public void UpdateRedScore () {
 		redScore += 1;
 		RedScore.text = redScore.ToString();
+		Reset();
 	}
 
 	public void UpdateGreenScore () {
 		greenScore += 1;
 		GreenScore.text = greenScore.ToString();
+		Reset();
     }
+
+	public void Reset () {
+		ball.GetComponent<BallMovement> ().InitBall();
+	}
 }

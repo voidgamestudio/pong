@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BallMovement : MonoBehaviour
 {
-    public Vector2 force = new Vector2(100, 100);
+    public Vector2 force = new Vector2(100,100);
     public float minVelocity = 10f;
     public Color collisionColor = new Color(1.0f, 0.6f, 0.6f);
 	private GameController gameController;
@@ -11,18 +11,8 @@ public class BallMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rigidbody2D.AddForce(force);
-        if (minVelocity > force.x)
-        {
-            minVelocity = force.x;
-        }
-        else if (minVelocity > force.y)
-        {
-            minVelocity = force.y;
-        }
-
 		gameController = GameObject.Find ("GameController").GetComponent<GameController>();
-
+		InitBall();
     }
 
     // Update is called once per frame
@@ -51,6 +41,21 @@ public class BallMovement : MonoBehaviour
     void CancelColor()
     {
         GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+    }
+
+	public void InitBall()
+	{
+		transform.position = new Vector3 (0, 0, 0);
+
+		rigidbody2D.AddForce(force);
+		if (minVelocity > force.x)
+		{
+			minVelocity = force.x;
+		}
+		else if (minVelocity > force.y)
+		{
+			minVelocity = force.y;
+		}
     }
     
 }
