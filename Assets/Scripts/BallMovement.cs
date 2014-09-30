@@ -6,6 +6,7 @@ public class BallMovement : MonoBehaviour
     public Vector2 force = new Vector2(100, 100);
     public float minVelocity = 10f;
     public Color collisionColor = new Color(1.0f, 0.6f, 0.6f);
+	private GameController gameController;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,9 @@ public class BallMovement : MonoBehaviour
         {
             minVelocity = force.y;
         }
+
+		gameController = GameObject.Find ("GameController").GetComponent<GameController>();
+
     }
 
     // Update is called once per frame
@@ -36,7 +40,12 @@ public class BallMovement : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = collisionColor;
             Invoke("CancelColor", 1.0f);
-        }
+        } else if (collisionInfo.collider.gameObject.name == "LeftBoundary") 
+		{
+			gameController.UpdateRedScore();
+		} else if (collisionInfo.collider.gameObject.name == "RightBoundary") {
+			gameController.UpdateGreenScore();
+		}
     }
 
     void CancelColor()
