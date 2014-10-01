@@ -3,16 +3,26 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
+    #region Public parameters
+
+    public GUIText RedScore, GreenScore;
+    public GameObject ball;
+
+    #endregion
+
+    #region Private attributes
 
     private int redScore = 0;
     private int greenScore = 0;
-    public GUIText RedScore, GreenScore;
-    public GameObject ball;
+    private GameObject currentBall;
+
+    #endregion
+
 
     // Use this for initialization
     void Start()
     {
-
+        currentBall = GameObject.Find("Ball");
     }
 
     // Update is called once per frame
@@ -37,8 +47,7 @@ public class GameController : MonoBehaviour
 
     public void Reset()
     {
-        GameObject newBall = (GameObject) Instantiate(ball);
-        Destroy(ball);
-        ball = newBall;
+        Destroy(currentBall);
+        currentBall = (GameObject)Instantiate(ball);
     }
 }
