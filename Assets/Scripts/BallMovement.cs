@@ -3,9 +3,19 @@ using System.Collections;
 
 public class BallMovement : MonoBehaviour
 {
+    #region Public parameters
+
     public float speed = 10f;
     public Color collisionColor = new Color(1.0f, 0.6f, 0.6f);
-	private GameController gameController;
+
+    #endregion
+
+    #region Private attributes
+
+    private GameController gameController;
+
+    #endregion
+
 
     // Use this for initialization
     void Start()
