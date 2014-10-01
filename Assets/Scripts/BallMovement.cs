@@ -12,7 +12,10 @@ public class BallMovement : MonoBehaviour
     void Start()
     {
 		gameController = GameObject.Find ("GameController").GetComponent<GameController>();
-		InitBall();
+        rigidbody2D.AddForce(force);
+        transform.position = new Vector3(0, 0, 0);
+
+
     }
 
     // Update is called once per frame
@@ -43,19 +46,5 @@ public class BallMovement : MonoBehaviour
         GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
     }
 
-	public void InitBall()
-	{
-		transform.position = new Vector3 (0, 0, 0);
-
-		rigidbody2D.AddForce(force);
-		if (minVelocity > force.x)
-		{
-			minVelocity = force.x;
-		}
-		else if (minVelocity > force.y)
-		{
-			minVelocity = force.y;
-		}
-    }
     
 }
