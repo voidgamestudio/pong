@@ -14,7 +14,7 @@ public class PaddleMoviment : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
 		var x = transform.position.x;
 		var y = transform.position.y;
@@ -23,12 +23,12 @@ public class PaddleMoviment : MonoBehaviour {
 		var newY = y;
 
 		if (Input.GetKey (upKey)) {
-			newY = y + Speed * Time.deltaTime;
+			transform.Translate(new Vector2(0.0f, 0.1f));
 
 		} else if(Input.GetKey (downKey)){
-			newY = y - Speed * Time.deltaTime;
+			transform.Translate(new Vector2(0.0f, -0.1f));
 		}
 
-		transform.position = new Vector3(x, newY, z);
+	 	//transform.position = new Vector3(x, newY, z);
 	}
 }
