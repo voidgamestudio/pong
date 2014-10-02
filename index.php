@@ -1,1 +1,1 @@
-<?php include_once("WebDeploy/WebDeploy.html"); ?>
+#Empty file to avoid "no Cedar-supported app detected" error
