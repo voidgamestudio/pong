@@ -7,13 +7,14 @@ public class GameController : MonoBehaviour
 
     public GUIText RedScore, GreenScore;
     public GameObject ball;
+    public AudioClip godGoalSound, devilGoalSound;
 
     #endregion
 
     #region Private attributes
 
-    private int redScore = 0;
-    private int greenScore = 0;
+    private int devilScore = 0;
+    private int godScore = 0;
     private GameObject currentBall;
 
     #endregion
@@ -31,17 +32,19 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void UpdateRedScore()
+    public void UpdateDevilScore()
     {
-        redScore += 1;
-        RedScore.text = redScore.ToString();
+        devilScore += 1;
+        RedScore.text = devilScore.ToString();
+        AudioSource.PlayClipAtPoint(devilGoalSound, transform.position);
         Reset();
     }
 
-    public void UpdateGreenScore()
+    public void UpdateGodScore()
     {
-        greenScore += 1;
-        GreenScore.text = greenScore.ToString();
+        godScore += 1;
+        GreenScore.text = godScore.ToString();
+        AudioSource.PlayClipAtPoint(godGoalSound, transform.position);
         Reset();
     }
 
