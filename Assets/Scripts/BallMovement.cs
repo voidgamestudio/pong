@@ -6,7 +6,8 @@ public class BallMovement : MonoBehaviour
     #region Public parameters
 
     public float speed = 10f;
-    public Color collisionColor = new Color(1.0f, 0.6f, 0.6f);
+    public Color devilsBallColor;
+	public Color godsBallColor;
     public AudioClip collisionSound;
 
     #endregion
@@ -30,7 +31,7 @@ public class BallMovement : MonoBehaviour
     {
         if (collisionInfo.collider.gameObject.tag == "Player")
         {
-            GetComponent<SpriteRenderer>().color = collisionColor;
+            
 
             // Calculate new direction of the ball
             // Calculate hit Factor
@@ -41,10 +42,12 @@ public class BallMovement : MonoBehaviour
             if (collisionInfo.collider.gameObject.name == "GreenPaddle")
             {
                 x = 1;
+				ChangeBallsColor(godsBallColor);
             }
             else if (collisionInfo.collider.gameObject.name == "RedPaddle")
             {
                 x = -1;
+				ChangeBallsColor(devilsBallColor);
             }
 
             // Calculate direction, set length to 1
@@ -56,7 +59,7 @@ public class BallMovement : MonoBehaviour
             // Play hit sound
             AudioSource.PlayClipAtPoint(collisionSound, transform.position);
 
-            Invoke("CancelColor", 1.0f);
+            //Invoke("CancelColor", 1.0f);
         }
         else if (collisionInfo.collider.gameObject.name == "LeftBoundary")
         {
@@ -68,9 +71,9 @@ public class BallMovement : MonoBehaviour
         }
     }
 
-    void CancelColor()
+    void ChangeBallsColor(Color ballsColor)
     {
-        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
+		GetComponent<SpriteRenderer>().color = ballsColor;
     }
 
     private float hitFactor(Vector2 ballPos, Vector2 racketPos,
