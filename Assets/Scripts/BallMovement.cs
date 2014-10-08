@@ -24,7 +24,16 @@ public class BallMovement : MonoBehaviour
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         transform.position = new Vector3(0, 0, 0);
-        rigidbody2D.velocity = Vector2.one.normalized * speed;
+        SetStartDirection();
+    }
+
+    private void SetStartDirection()
+    {
+        int[] possibleStartAngles = { 45, 135, 225, 315 };
+        int randomIndex = Random.Range(0, possibleStartAngles.Length);
+        int randomAngle = possibleStartAngles[randomIndex];
+        Vector2 startVel = new Vector2(Mathf.Cos(randomAngle * Mathf.Deg2Rad), Mathf.Sin(randomAngle * Mathf.Deg2Rad)).normalized;
+        rigidbody2D.velocity = startVel * speed;
     }
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
